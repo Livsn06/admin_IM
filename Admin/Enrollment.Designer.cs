@@ -33,17 +33,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.search = new System.Windows.Forms.TextBox();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.button2 = new System.Windows.Forms.Button();
-            this.delete = new System.Windows.Forms.Button();
+            this.drop = new System.Windows.Forms.Button();
             this.enrollment_table = new System.Windows.Forms.DataGridView();
             this.enrollment_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stud_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stud_lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stud_firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stud_block = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stud_year = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.set_CB = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.enrollment_table)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,11 +52,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.label1.Location = new System.Drawing.Point(19, 48);
+            this.label1.Location = new System.Drawing.Point(19, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 25);
+            this.label1.Size = new System.Drawing.Size(134, 25);
             this.label1.TabIndex = 10;
-            this.label1.Text = "Add Students";
+            this.label1.Text = "Enroll Student";
             // 
             // button1
             // 
@@ -67,16 +67,18 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 38);
             this.button1.TabIndex = 11;
-            this.button1.Text = "Add";
+            this.button1.Text = "Enroll";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // search
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(644, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(250, 48);
-            this.textBox1.TabIndex = 8;
+            this.search.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search.Location = new System.Drawing.Point(644, 47);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(250, 48);
+            this.search.TabIndex = 8;
+            this.search.TextChanged += new System.EventHandler(this.search_TextChanged);
             // 
             // iconButton1
             // 
@@ -105,18 +107,18 @@
             this.button2.Text = "Edit";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // delete
+            // drop
             // 
-            this.delete.BackColor = System.Drawing.Color.Firebrick;
-            this.delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.delete.ForeColor = System.Drawing.Color.White;
-            this.delete.Location = new System.Drawing.Point(693, 471);
-            this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(120, 43);
-            this.delete.TabIndex = 13;
-            this.delete.Text = "Delete";
-            this.delete.UseVisualStyleBackColor = false;
-            this.delete.Click += new System.EventHandler(this.button3_Click);
+            this.drop.BackColor = System.Drawing.Color.Firebrick;
+            this.drop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.drop.ForeColor = System.Drawing.Color.White;
+            this.drop.Location = new System.Drawing.Point(693, 471);
+            this.drop.Name = "drop";
+            this.drop.Size = new System.Drawing.Size(120, 43);
+            this.drop.TabIndex = 13;
+            this.drop.Text = "Drop";
+            this.drop.UseVisualStyleBackColor = false;
+            this.drop.Click += new System.EventHandler(this.button3_Click);
             // 
             // enrollment_table
             // 
@@ -139,8 +141,7 @@
             this.stud_id,
             this.stud_lastname,
             this.stud_firstname,
-            this.stud_block,
-            this.stud_year});
+            this.stud_block});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -182,9 +183,9 @@
             // stud_id
             // 
             this.stud_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.stud_id.FillWeight = 15F;
+            this.stud_id.FillWeight = 10F;
             this.stud_id.HeaderText = "Student ID";
-            this.stud_id.MinimumWidth = 15;
+            this.stud_id.MinimumWidth = 10;
             this.stud_id.Name = "stud_id";
             this.stud_id.ReadOnly = true;
             this.stud_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -192,9 +193,9 @@
             // stud_lastname
             // 
             this.stud_lastname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.stud_lastname.FillWeight = 25F;
-            this.stud_lastname.HeaderText = "Lastname";
-            this.stud_lastname.MinimumWidth = 25;
+            this.stud_lastname.FillWeight = 8F;
+            this.stud_lastname.HeaderText = "Year";
+            this.stud_lastname.MinimumWidth = 8;
             this.stud_lastname.Name = "stud_lastname";
             this.stud_lastname.ReadOnly = true;
             this.stud_lastname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -202,9 +203,9 @@
             // stud_firstname
             // 
             this.stud_firstname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.stud_firstname.FillWeight = 25F;
-            this.stud_firstname.HeaderText = "Firstname";
-            this.stud_firstname.MinimumWidth = 25;
+            this.stud_firstname.FillWeight = 10F;
+            this.stud_firstname.HeaderText = "Subject ID";
+            this.stud_firstname.MinimumWidth = 10;
             this.stud_firstname.Name = "stud_firstname";
             this.stud_firstname.ReadOnly = true;
             this.stud_firstname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -212,33 +213,47 @@
             // stud_block
             // 
             this.stud_block.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.stud_block.FillWeight = 10F;
-            this.stud_block.HeaderText = "Block";
-            this.stud_block.MinimumWidth = 10;
+            this.stud_block.FillWeight = 15F;
+            this.stud_block.HeaderText = "Subject taken";
+            this.stud_block.MinimumWidth = 15;
             this.stud_block.Name = "stud_block";
             this.stud_block.ReadOnly = true;
             // 
-            // stud_year
+            // set_CB
             // 
-            this.stud_year.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.stud_year.FillWeight = 10F;
-            this.stud_year.HeaderText = "Year";
-            this.stud_year.MinimumWidth = 10;
-            this.stud_year.Name = "stud_year";
-            this.stud_year.ReadOnly = true;
+            this.set_CB.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.set_CB.DropDownHeight = 100;
+            this.set_CB.Font = new System.Drawing.Font("Microsoft Tai Le", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.set_CB.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.set_CB.FormattingEnabled = true;
+            this.set_CB.IntegralHeight = false;
+            this.set_CB.Items.AddRange(new object[] {
+            "--Set--",
+            "Student Id",
+            "Subject Id",
+            "Year",
+            "Description"});
+            this.set_CB.Location = new System.Drawing.Point(441, 49);
+            this.set_CB.MaxDropDownItems = 10;
+            this.set_CB.Name = "set_CB";
+            this.set_CB.Size = new System.Drawing.Size(200, 46);
+            this.set_CB.TabIndex = 22;
+            this.set_CB.Text = "--Set--";
+            this.set_CB.SelectedIndexChanged += new System.EventHandler(this.set_CB_SelectedIndexChanged);
             // 
             // Enrollment
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(978, 532);
+            this.Controls.Add(this.set_CB);
             this.Controls.Add(this.enrollment_table);
-            this.Controls.Add(this.delete);
+            this.Controls.Add(this.drop);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.iconButton1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.search);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Enrollment";
             this.Text = "Enrollment";
@@ -253,16 +268,16 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox search;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button delete;
+        private System.Windows.Forms.Button drop;
         public System.Windows.Forms.DataGridView enrollment_table;
         private System.Windows.Forms.DataGridViewTextBoxColumn enrollment_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn stud_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn stud_lastname;
         private System.Windows.Forms.DataGridViewTextBoxColumn stud_firstname;
         private System.Windows.Forms.DataGridViewTextBoxColumn stud_block;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stud_year;
+        public System.Windows.Forms.ComboBox set_CB;
     }
 }

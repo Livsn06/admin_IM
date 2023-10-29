@@ -47,3 +47,4 @@ C:\Users\joelg\OneDrive\Desktop\joel admin\Admin\bin\Debug\System.Threading.Task
 C:\Users\joelg\OneDrive\Desktop\joel admin\Admin\obj\Debug\Admin.Subjectadd.resources
 C:\Users\joelg\OneDrive\Desktop\joel admin\Admin\obj\Debug\Admin.Studentadd.resources
 C:\Users\joelg\OneDrive\Desktop\joel admin\Admin\obj\Debug\Admin.Student.resources
+C:\Users\joelg\OneDrive\Desktop\joel admin\Admin\obj\Debug\Admin.Studentedit.resources
